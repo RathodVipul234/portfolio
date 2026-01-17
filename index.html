@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vipul Rathod - Python Developer & Tech Lead with 4+ years of experience in FastAPI, Django, AI/LLM, and scalable backend systems">
+    <meta name="keywords" content="Python Developer, Tech Lead, FastAPI, Django, AI, LLM, Full Stack Developer">
+    <meta name="author" content="Vipul Rathod">
+    <title>Vipul Rathod | Python Developer & Tech Lead</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Loader -->
+    <div class="loader">
+        <div class="loader-content">
+            <div class="loader-text">
+                <span>V</span><span>I</span><span>P</span><span>U</span><span>L</span>
+            </div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <span class="logo-text">AreeVee</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#hero" class="nav-link active" data-section="hero">Home</a></li>
+                <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+                <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+                <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+                <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
+                <li><a href="#blog" class="nav-link" data-section="blog">Blog</a></li>
+                <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Floating Decorative Elements -->
+    <div class="floating-elements">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
+        <div class="floating-shape shape-5"></div>
+        <div class="floating-shape shape-6"></div>
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main data-scroll-container>
+        <!-- Hero Section -->
+        <section id="hero" class="hero" data-scroll-section>
+            <canvas id="hero-canvas"></canvas>
+            <div class="hero-content" data-scroll data-scroll-speed="2">
+                <h1 class="hero-title">
+                    <span class="title-line">
+                        <span class="title-word" data-scroll data-scroll-speed="1">Hi, I'm</span>
+                    </span>
+                    <span class="title-line">
+                        <span class="title-word name-highlight" data-scroll data-scroll-speed="1.5">Vipul Rathod</span>
+                    </span>
+                </h1>
+                <div class="hero-subtitle">
+                    <span class="typing-text">Vipul Rathod</span>
+                    <span class="typing-cursor">|</span>
+                </div>
+                <p class="hero-description" data-scroll data-scroll-speed="1">
+                    Python Developer & Tech Lead with 4+ years of experience building
+                    scalable backend systems, AI-powered applications, and enterprise solutions.
+                </p>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary magnetic">
+                        <span>View My Work</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary magnetic">
+                        <span>Get In Touch</span>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="4">0</span>
+                        <span class="stat-suffix">+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="20">0</span>
+                        <span class="stat-suffix">+</span>
+                        <span class="stat-label">Projects Delivered</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="20">0</span>
+                        <span class="stat-suffix">+</span>
+                        <span class="stat-label">Team Members Led</span>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator" data-scroll data-scroll-speed="3">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <span>Scroll Down</span>
+            </div>
+            <div class="hero-bg-elements">
+                <div class="floating-shape shape-1"></div>
+                <div class="floating-shape shape-2"></div>
+                <div class="floating-shape shape-3"></div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about" data-scroll-section>
+            <div class="container">
+                <div class="section-header" data-scroll data-scroll-speed="1">
+                    <span class="section-tag">About Me</span>
+                    <h2 class="section-title split-text">Turning Ideas Into Reality</h2>
+                </div>
+                <div class="about-content">
+                    <div class="about-image" data-scroll data-scroll-speed="2">
+                        <div class="image-wrapper">
+                            <div class="image-placeholder">
+                                <span class="initials">VR</span>
+                            </div>
+                            <div class="image-border"></div>
+                        </div>
+                        <div class="experience-badge">
+                            <span class="exp-number">4+</span>
+                            <span class="exp-text">Years of<br>Experience</span>
+                        </div>
+                    </div>
+                    <div class="about-text" data-scroll data-scroll-speed="1">
+                        <p class="about-intro">
+                            I'm a results-driven <strong>Python Developer</strong> and <strong>Tech Lead</strong>
+                            passionate about building scalable backend systems and AI-powered solutions.
+                        </p>
+                        <p>
+                            With expertise in <strong>FastAPI</strong>, <strong>Django</strong>, and
+                            <strong>AI/LLM integrations</strong>, I've architected high-performance applications
+                            capable of processing millions of data records in real-time. My experience spans
+                            full-stack development including <strong>Flutter</strong> for mobile applications.
+                        </p>
+                        <p>
+                            Beyond coding, I bring strong <strong>DevOps skills</strong> with hands-on experience
+                            in AWS EC2, S3, and Apache Airflow. I take pride in mentoring junior developers
+                            and leading cross-functional teams to deliver exceptional results.
+                        </p>
+                        <div class="about-highlights">
+                            <div class="highlight-item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>Enterprise-level Architecture</span>
+                            </div>
+                            <div class="highlight-item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>AI/LLM Integration Expert</span>
+                            </div>
+                            <div class="highlight-item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>Team Leadership & Mentoring</span>
+                            </div>
+                            <div class="highlight-item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>Full Server Responsibility</span>
+                            </div>
+                        </div>
+                        <a href="#contact" class="btn btn-primary magnetic">
+                            <span>Let's Work Together</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills" data-scroll-section>
+            <canvas id="skills-canvas"></canvas>
+            <div class="container">
+                <div class="section-header" data-scroll data-scroll-speed="1">
+                    <span class="section-tag">My Skills</span>
+                    <h2 class="section-title split-text">Technologies I Work With</h2>
+                </div>
+
+                <div class="skills-orbit" data-scroll data-scroll-speed="1">
+                    <div class="orbit-center">
+                        <span>Tech</span>
+                        <span>Stack</span>
+                    </div>
+                    <div class="orbit orbit-1">
+                        <div class="orbit-item" data-skill="Python" style="--i: 0;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                        </div>
+                        <div class="orbit-item" data-skill="FastAPI" style="--i: 1;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI">
+                        </div>
+                        <div class="orbit-item" data-skill="Django" style="--i: 2;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django">
+                        </div>
+                        <div class="orbit-item" data-skill="Flutter" style="--i: 3;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter">
+                        </div>
+                        <div class="orbit-item" data-skill="TypeScript" style="--i: 4;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript">
+                        </div>
+                    </div>
+                    <div class="orbit orbit-2">
+                        <div class="orbit-item" data-skill="React" style="--i: 0;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+                        </div>
+                        <div class="orbit-item" data-skill="JavaScript" style="--i: 1;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                        </div>
+                        <div class="orbit-item" data-skill="PostgreSQL" style="--i: 2;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
+                        </div>
+                        <div class="orbit-item" data-skill="Docker" style="--i: 3;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
+                        </div>
+                        <div class="orbit-item" data-skill="AWS" style="--i: 4;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" alt="AWS">
+                        </div>
+                        <div class="orbit-item" data-skill="MongoDB" style="--i: 5;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB">
+                        </div>
+                    </div>
+                    <div class="orbit orbit-3">
+                        <div class="orbit-item" data-skill="Git" style="--i: 0;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+                        </div>
+                        <div class="orbit-item" data-skill="Linux" style="--i: 1;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+                        </div>
+                        <div class="orbit-item" data-skill="Redis" style="--i: 2;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis">
+                        </div>
+                        <div class="orbit-item" data-skill="GraphQL" style="--i: 3;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" alt="GraphQL">
+                        </div>
+                        <div class="orbit-item" data-skill="Kubernetes" style="--i: 4;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes">
+                        </div>
+                        <div class="orbit-item" data-skill="TensorFlow" style="--i: 5;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow">
+                        </div>
+                        <div class="orbit-item" data-skill="NumPy" style="--i: 6;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy">
+                        </div>
+                    </div>
+                    <div class="orbit orbit-4">
+                        <div class="orbit-item" data-skill="Selenium" style="--i: 0;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg" alt="Selenium">
+                        </div>
+                        <div class="orbit-item" data-skill="Pandas" style="--i: 1;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas">
+                        </div>
+                        <div class="orbit-item" data-skill="Node.js" style="--i: 2;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+                        </div>
+                        <div class="orbit-item" data-skill="Firebase" style="--i: 3;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase">
+                        </div>
+                        <div class="orbit-item" data-skill="MySQL" style="--i: 4;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
+                        </div>
+                        <div class="orbit-item" data-skill="VS Code" style="--i: 5;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
+                        </div>
+                        <div class="orbit-item" data-skill="HTML5" style="--i: 6;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+                        </div>
+                        <div class="orbit-item" data-skill="CSS3" style="--i: 7;">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-grid" data-scroll data-scroll-speed="1">
+                    <div class="skill-category">
+                        <h3 class="category-title">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                            Backend Development
+                        </h3>
+                        <div class="skill-bars">
+                            <div class="skill-bar" data-skill="Python" data-level="95">
+                                <div class="skill-info">
+                                    <span class="skill-name">Python</span>
+                                    <span class="skill-percent">95%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar" data-skill="FastAPI" data-level="90">
+                                <div class="skill-info">
+                                    <span class="skill-name">FastAPI</span>
+                                    <span class="skill-percent">90%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar" data-skill="Django" data-level="88">
+                                <div class="skill-info">
+                                    <span class="skill-name">Django</span>
+                                    <span class="skill-percent">88%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="category-title">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line>
+                                <line x1="12" y1="17" x2="12" y2="21"></line>
+                            </svg>
+                            Frontend & Mobile
+                        </h3>
+                        <div class="skill-bars">
+                            <div class="skill-bar" data-skill="Flutter" data-level="85">
+                                <div class="skill-info">
+                                    <span class="skill-name">Flutter</span>
+                                    <span class="skill-percent">85%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar" data-skill="React" data-level="80">
+                                <div class="skill-info">
+                                    <span class="skill-name">React.js</span>
+                                    <span class="skill-percent">80%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar" data-skill="JavaScript" data-level="85">
+                                <div class="skill-info">
+                                    <span class="skill-name">JavaScript</span>
+                                    <span class="skill-percent">85%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="category-title">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                <path d="M2 17l10 5 10-5"></path>
+                                <path d="M2 12l10 5 10-5"></path>
+                            </svg>
+                            AI & Data
+                        </h3>
+                        <div class="skill-bars">
+                            <div class="skill-bar" data-skill="LLM" data-level="85">
+                                <div class="skill-info">
+                                    <span class="skill-name">LLM Integration</span>
+                                    <span class="skill-percent">85%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar" data-skill="WebScraping" data-level="92">
+                                <div class="skill-info">
+                                    <span class="skill-name">Web Scraping</span>
+                                    <span class="skill-percent">92%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar" data-skill="DataProcessing" data-level="88">
+                                <div class="skill-info">
+                                    <span class="skill-name">Data Processing</span>
+                                    <span class="skill-percent">88%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="category-title">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            DevOps & Cloud
+                        </h3>
+                        <div class="skill-bars">
+                            <div class="skill-bar" data-skill="AWS" data-level="82">
+                                <div class="skill-info">
+                                    <span class="skill-name">AWS (EC2, S3)</span>
+                                    <span class="skill-percent">82%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar" data-skill="Docker" data-level="78">
+                                <div class="skill-info">
+                                    <span class="skill-name">Docker</span>
+                                    <span class="skill-percent">78%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar" data-skill="Linux" data-level="85">
+                                <div class="skill-info">
+                                    <span class="skill-name">Linux/Server Mgmt</span>
+                                    <span class="skill-percent">85%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects" data-scroll-section>
+            <div class="container">
+                <div class="section-header" data-scroll data-scroll-speed="1">
+                    <span class="section-tag">My Work</span>
+                    <h2 class="section-title split-text">Featured Projects</h2>
+                </div>
+
+                <div class="project-filters" data-scroll data-scroll-speed="1">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="ai">AI/LLM</button>
+                    <button class="filter-btn" data-filter="backend">Backend</button>
+                    <button class="filter-btn" data-filter="fullstack">Full Stack</button>
+                </div>
+
+                <div class="projects-grid">
+                    <article class="project-card" data-category="ai" data-scroll data-scroll-speed="1">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3v-8a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4z"/>
+                                    <circle cx="9" cy="13" r="1"/>
+                                    <circle cx="15" cy="13" r="1"/>
+                                    <path d="M9 17h6"/>
+                                </svg>
+                            </div>
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link magnetic" aria-label="View Project">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                                        </svg>
+                                    </a>
+                                    <a href="#" class="project-link magnetic" aria-label="View Code">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-category">AI Platform</span>
+                            <h3 class="project-title">KolossusAI</h3>
+                            <p class="project-description">
+                                Enterprise AI platform connecting with any data source and performing intelligent operations.
+                                Led the team as Head of Technology.
+                            </p>
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>FastAPI</span>
+                                <span>Flutter</span>
+                                <span>LLM</span>
+                                <span>AWS</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="backend" data-scroll data-scroll-speed="1.2">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                                </svg>
+                            </div>
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link magnetic" aria-label="View Project">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-category">Real-time Analytics</span>
+                            <h3 class="project-title">Override Backend</h3>
+                            <p class="project-description">
+                                Highly scalable FastAPI backend processing millions of data records for real-time trading analytics.
+                            </p>
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>FastAPI</span>
+                                <span>Real-time</span>
+                                <span>High-Performance</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="backend" data-scroll data-scroll-speed="0.8">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                </svg>
+                            </div>
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link magnetic" aria-label="View Project">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-category">Data Infrastructure</span>
+                            <h3 class="project-title">Web Scraping Infrastructure</h3>
+                            <p class="project-description">
+                                Large-scale web scraping systems with advanced proxy rotation and anti-blocking mechanisms.
+                            </p>
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>Selenium</span>
+                                <span>BeautifulSoup</span>
+                                <span>Proxy Mgmt</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="fullstack" data-scroll data-scroll-speed="1">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                                </svg>
+                            </div>
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link magnetic" aria-label="View Project">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-category">EdTech Platform</span>
+                            <h3 class="project-title">Real School</h3>
+                            <p class="project-description">
+                                Educational platform connecting learners with speakers via Zoom sessions. Led development as Team Lead.
+                            </p>
+                            <div class="project-tech">
+                                <span>Django</span>
+                                <span>React</span>
+                                <span>Zoom API</span>
+                                <span>Stripe</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="fullstack" data-scroll data-scroll-speed="1.1">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                                </svg>
+                            </div>
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link magnetic" aria-label="View Project">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-category">Marketplace</span>
+                            <h3 class="project-title">Real Gown (GOWD)</h3>
+                            <p class="project-description">
+                                Subscription marketplace platform for buying and selling shared subscription services.
+                            </p>
+                            <div class="project-tech">
+                                <span>Django</span>
+                                <span>JavaScript</span>
+                                <span>jQuery</span>
+                                <span>AJAX</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section (replacing Testimonials) -->
+        <section id="experience" class="experience" data-scroll-section>
+            <div class="container">
+                <div class="section-header" data-scroll data-scroll-speed="1">
+                    <span class="section-tag">Experience</span>
+                    <h2 class="section-title split-text">My Professional Journey</h2>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item" data-scroll data-scroll-speed="1">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3 class="timeline-title">Python Developer / Tech Lead</h3>
+                                <span class="timeline-company">Ocius Technologies</span>
+                            </div>
+                            <span class="timeline-date">Oct 2022 - Present</span>
+                            <ul class="timeline-details">
+                                <li>Lead development teams, providing technical guidance and conducting code reviews</li>
+                                <li>Architect enterprise-level applications using FastAPI, Django, Flutter, and AI/LLM technologies</li>
+                                <li>Design scalable backend systems processing millions of data records in real-time</li>
+                                <li>Manage full server deployment and infrastructure on AWS EC2</li>
+                                <li>Conduct training sessions for interns and mentor junior developers</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-scroll data-scroll-speed="1">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3 class="timeline-title">Python Developer</h3>
+                                <span class="timeline-company">Acquaint Softtech Pvt. Ltd.</span>
+                            </div>
+                            <span class="timeline-date">Feb 2021 - Oct 2022</span>
+                            <ul class="timeline-details">
+                                <li>Started as Junior Developer and progressed to Team Lead role</li>
+                                <li>Developed full-stack web applications using Django, JavaScript, jQuery, and React</li>
+                                <li>Led project teams ensuring timely delivery and code quality standards</li>
+                                <li>Integrated Stripe payment gateway and Zoom meeting services</li>
+                                <li>Mentored junior developers and conducted code reviews</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-scroll data-scroll-speed="1">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3 class="timeline-title">Bachelor of Engineering</h3>
+                                <span class="timeline-company">Government Engineering College, Patan</span>
+                            </div>
+                            <span class="timeline-date">2017 - 2021</span>
+                            <ul class="timeline-details">
+                                <li>Computer Engineering - Gujarat Technological University</li>
+                                <li>CGPA: 8.25</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="certifications" data-scroll data-scroll-speed="1">
+                    <h3 class="cert-title">Certifications</h3>
+                    <div class="cert-grid">
+                        <a href="https://www.hackerrank.com/certificates/f122a5cf1451" target="_blank" rel="noopener noreferrer" class="cert-item">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="8" r="6"></circle>
+                                <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"></path>
+                            </svg>
+                            <span>Problem Solving - HackerRank</span>
+                        </a>
+                        <a href="https://www.udemy.com/certificate/UC-b355248f-8edb-4248-9f39-e329a54a41d0/" target="_blank" rel="noopener noreferrer" class="cert-item">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="8" r="6"></circle>
+                                <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"></path>
+                            </svg>
+                            <span>Data Science & ML - Udemy</span>
+                        </a>
+                        <a href="https://www.credly.com/badges/d10ed5ab-7a20-4123-b6b1-701530e07dc6" target="_blank" rel="noopener noreferrer" class="cert-item">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="8" r="6"></circle>
+                                <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"></path>
+                            </svg>
+                            <span>AWS Cloud Practitioner</span>
+                        </a>
+                        <a href="https://coursera.org/share/90a4344d9d83d660b559e513efd42153" target="_blank" rel="noopener noreferrer" class="cert-item">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="8" r="6"></circle>
+                                <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"></path>
+                            </svg>
+                            <span>Supervised Machine Learning - Coursera</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="blog" data-scroll-section>
+            <div class="container">
+                <div class="section-header" data-scroll data-scroll-speed="1">
+                    <span class="section-tag">Blog</span>
+                    <h2 class="section-title split-text">Latest Articles</h2>
+                </div>
+
+                <div class="blog-grid">
+                    <article class="blog-card" data-scroll data-scroll-speed="1">
+                        <div class="blog-image">
+                            <div class="blog-placeholder">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3v-8a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4z"/>
+                                </svg>
+                            </div>
+                            <span class="blog-category">AI/LLM</span>
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-date">January 2025</span>
+                            <h3 class="blog-title">Building Enterprise AI Platforms with Django</h3>
+                            <p class="blog-excerpt">
+                                Insights from building KolossusAI - an enterprise platform that connects with any data source.
+                            </p>
+                            <a href="blog/building-enterprise-ai-platforms.html" class="blog-link">
+                                Read More
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card" data-scroll data-scroll-speed="1.1">
+                        <div class="blog-image">
+                            <div class="blog-placeholder">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <polyline points="16 18 22 12 16 6"></polyline>
+                                    <polyline points="8 6 2 12 8 18"></polyline>
+                                </svg>
+                            </div>
+                            <span class="blog-category">Backend</span>
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-date">January 2025</span>
+                            <h3 class="blog-title">Scaling FastAPI for Millions of Records</h3>
+                            <p class="blog-excerpt">
+                                How we built a real-time trading analytics backend that processes millions of data records.
+                            </p>
+                            <a href="blog/scaling-fastapi-millions-records.html" class="blog-link">
+                                Read More
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card" data-scroll data-scroll-speed="0.9">
+                        <div class="blog-image">
+                            <div class="blog-placeholder">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"></path>
+                                </svg>
+                            </div>
+                            <span class="blog-category">Web Scraping</span>
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-date">January 2025</span>
+                            <h3 class="blog-title">Advanced Web Scraping Techniques</h3>
+                            <p class="blog-excerpt">
+                                Best practices for building large-scale scraping systems with proxy rotation and anti-blocking.
+                            </p>
+                            <a href="blog/advanced-web-scraping-techniques.html" class="blog-link">
+                                Read More
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact" data-scroll-section>
+            <div class="container">
+                <div class="section-header" data-scroll data-scroll-speed="1">
+                    <span class="section-tag">Get In Touch</span>
+                    <h2 class="section-title split-text">Let's Work Together</h2>
+                    <p class="section-subtitle">
+                        Have a project in mind? Let's discuss how I can help bring your ideas to life.
+                    </p>
+                </div>
+
+                <div class="contact-content">
+                    <div class="contact-info" data-scroll data-scroll-speed="1">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <div class="contact-details">
+                                <span class="contact-label">Email</span>
+                                <a href="mailto:rathodv9229@gmail.com" class="contact-value">rathodv9229@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </div>
+                            <div class="contact-details">
+                                <span class="contact-label">Phone</span>
+                                <a href="tel:+917283876336" class="contact-value">+91 7283876336</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
+                            <div class="contact-details">
+                                <span class="contact-label">Location</span>
+                                <span class="contact-value">Gujarat, India</span>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="https://linkedin.com/in/rathodvipul99" target="_blank" rel="noopener noreferrer" class="social-link magnetic" aria-label="LinkedIn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                    <rect x="2" y="9" width="4" height="12"></rect>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                            </a>
+                            <a href="https://github.com/RathodVipul234" target="_blank" rel="noopener noreferrer" class="social-link magnetic" aria-label="GitHub">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                </svg>
+                            </a>
+                            <a href="mailto:rathodv9229@gmail.com" class="social-link magnetic" aria-label="Email">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </a>
+                            <a href="https://instagram.com/mr.vipul234" target="_blank" rel="noopener noreferrer" class="social-link magnetic" aria-label="Instagram">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <form class="contact-form" data-scroll data-scroll-speed="1">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required>
+                            <label for="name">Your Name</label>
+                            <span class="form-line"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">Your Email</label>
+                            <span class="form-line"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" required>
+                            <label for="subject">Subject</label>
+                            <span class="form-line"></span>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                            <label for="message">Your Message</label>
+                            <span class="form-line"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary magnetic">
+                            <span>Send Message</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer" data-scroll-section>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <span class="footer-logo">AreeVee</span>
+                        <p>Python Developer & Tech Lead building scalable solutions.</p>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#hero">Home</a>
+                        <a href="#about">About</a>
+                        <a href="#projects">Projects</a>
+                        <a href="#contact">Contact</a>
+                        <a href="https://linkedin.com/in/rathodvipul99" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a href="https://github.com/RathodVipul234" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a href="https://instagram.com/mr.vipul234" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Vipul Rathod. All rights reserved.</p>
+                    <p>Built with passion and code.</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script src="js/three-scene.js"></script>
+    <script src="js/skills-scene.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/smooth-scroll.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

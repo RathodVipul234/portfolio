@@ -1,0 +1,20 @@
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+nul
+
+# Claude Code
+.claude/
+
+# Personal files
+*.docx
+*.pdf
+
+# Node modules (if added later)
+node_modules/

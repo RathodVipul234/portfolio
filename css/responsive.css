@@ -1,0 +1,625 @@
+/* ========================================
+   Responsive Styles
+   ======================================== */
+
+/* ========================================
+   Large Screens (1200px and below)
+   ======================================== */
+@media (max-width: 1200px) {
+    :root {
+        --container-padding: 1.5rem;
+    }
+
+    .skills-orbit {
+        width: 500px;
+        height: 500px;
+    }
+
+    .orbit-1 {
+        width: 180px;
+        height: 180px;
+        margin: -90px 0 0 -90px;
+    }
+
+    .orbit-1 .orbit-item {
+        transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(90px) rotate(calc(-360deg / var(--total) * var(--i)));
+    }
+
+    .orbit-2 {
+        width: 280px;
+        height: 280px;
+        margin: -140px 0 0 -140px;
+    }
+
+    .orbit-2 .orbit-item {
+        transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(140px) rotate(calc(-360deg / var(--total) * var(--i)));
+    }
+
+    .orbit-3 {
+        width: 380px;
+        height: 380px;
+        margin: -190px 0 0 -190px;
+    }
+
+    .orbit-3 .orbit-item {
+        transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(190px) rotate(calc(-360deg / var(--total) * var(--i)));
+    }
+
+    .orbit-4 {
+        width: 480px;
+        height: 480px;
+        margin: -240px 0 0 -240px;
+    }
+
+    .orbit-4 .orbit-item {
+        transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(240px) rotate(calc(-360deg / var(--total) * var(--i)));
+    }
+}
+
+/* ========================================
+   Tablets (992px and below)
+   ======================================== */
+@media (max-width: 992px) {
+    section {
+        padding: var(--space-3xl) 0;
+    }
+
+    /* Navigation */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 400px;
+        height: 100vh;
+        background: var(--color-bg-secondary);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: var(--space-xl);
+        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        border-left: 1px solid var(--color-border);
+    }
+
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .nav-link {
+        font-size: 1.2rem;
+    }
+
+    .nav-toggle {
+        display: block;
+        z-index: 1001;
+    }
+
+    /* About */
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-3xl);
+    }
+
+    .about-image {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .about-highlights {
+        grid-template-columns: 1fr;
+    }
+
+    /* Skills */
+    .skills-orbit {
+        width: 350px;
+        height: 350px;
+        margin-bottom: var(--space-3xl);
+    }
+
+    .orbit-center {
+        width: 100px;
+        height: 100px;
+        font-size: 0.9rem;
+    }
+
+    .orbit-item {
+        width: 40px;
+        height: 40px;
+    }
+
+    .orbit-item img {
+        width: 22px;
+        height: 22px;
+    }
+
+    .orbit-1 {
+        width: 160px;
+        height: 160px;
+        margin: -80px 0 0 -80px;
+    }
+
+    .orbit-1 .orbit-item {
+        transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(80px) rotate(calc(-360deg / var(--total) * var(--i)));
+    }
+
+    .orbit-2 {
+        width: 240px;
+        height: 240px;
+        margin: -120px 0 0 -120px;
+    }
+
+    .orbit-2 .orbit-item {
+        transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(120px) rotate(calc(-360deg / var(--total) * var(--i)));
+    }
+
+    .orbit-3 {
+        width: 330px;
+        height: 330px;
+        margin: -165px 0 0 -165px;
+    }
+
+    .orbit-3 .orbit-item {
+        transform: rotate(calc(360deg / var(--total) * var(--i))) translateX(165px) rotate(calc(-360deg / var(--total) * var(--i)));
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Projects */
+    .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+
+    /* Contact */
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-3xl);
+    }
+
+    /* Footer */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* ========================================
+   Small Tablets (768px and below)
+   ======================================== */
+@media (max-width: 768px) {
+    :root {
+        --container-padding: 1rem;
+    }
+
+    section {
+        padding: var(--space-2xl) 0;
+    }
+
+    /* Hero */
+    .hero {
+        padding-top: 60px;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 10vw, 3rem);
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+    }
+
+    .hero-stats {
+        gap: var(--space-xl);
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+    }
+
+    .scroll-indicator {
+        display: none;
+    }
+
+    /* Section Headers */
+    .section-title {
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
+    }
+
+    /* Skills Orbit - Hide on small tablets */
+    .skills-orbit {
+        display: none;
+    }
+
+    /* Timeline */
+    .timeline {
+        padding-left: var(--space-xl);
+    }
+
+    .timeline-marker {
+        left: calc(-1 * var(--space-xl) - 6px);
+    }
+
+    .timeline-content {
+        padding: var(--space-lg);
+    }
+
+    .timeline-title {
+        font-size: 1.1rem;
+    }
+
+    /* Certifications */
+    .cert-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cert-item {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+
+    /* Blog */
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Contact */
+    .social-links {
+        justify-content: center;
+    }
+}
+
+/* ========================================
+   Mobile Phones (576px and below)
+   ======================================== */
+@media (max-width: 576px) {
+    :root {
+        --space-2xl: 2rem;
+        --space-3xl: 2.5rem;
+        --space-4xl: 3rem;
+    }
+
+    /* Navigation */
+    .nav-menu {
+        width: 100%;
+        max-width: none;
+    }
+
+    .navbar.scrolled {
+        padding: var(--space-sm) 0;
+    }
+
+    .nav-logo {
+        font-size: 1.25rem;
+    }
+
+    /* Hero */
+    .hero-badge {
+        font-size: 0.75rem;
+        padding: var(--space-xs) var(--space-md);
+    }
+
+    .hero-stats {
+        flex-direction: column;
+        gap: var(--space-lg);
+    }
+
+    .stat-item {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+    }
+
+    .stat-label {
+        margin-top: 0;
+    }
+
+    /* About */
+    .about-image {
+        max-width: 280px;
+    }
+
+    .experience-badge {
+        bottom: -10px;
+        right: -10px;
+        padding: var(--space-md);
+    }
+
+    .exp-number {
+        font-size: 1.75rem;
+    }
+
+    .image-placeholder .initials {
+        font-size: 4rem;
+    }
+
+    .about-intro {
+        font-size: 1.1rem;
+    }
+
+    /* Skills */
+    .skill-category {
+        padding: var(--space-lg);
+    }
+
+    .category-title {
+        font-size: 1rem;
+    }
+
+    /* Projects */
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-filters {
+        gap: var(--space-sm);
+    }
+
+    .filter-btn {
+        padding: var(--space-xs) var(--space-md);
+        font-size: 0.8rem;
+    }
+
+    .project-content {
+        padding: var(--space-md);
+    }
+
+    .project-title {
+        font-size: 1.1rem;
+    }
+
+    .project-tech span {
+        font-size: 0.7rem;
+    }
+
+    /* Timeline */
+    .timeline-details li {
+        font-size: 0.9rem;
+    }
+
+    /* Contact */
+    .contact-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+    }
+
+    .contact-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .social-link {
+        width: 45px;
+        height: 45px;
+    }
+
+    /* Footer */
+    .footer-links {
+        flex-wrap: wrap;
+        gap: var(--space-md);
+    }
+}
+
+/* ========================================
+   Extra Small Phones (400px and below)
+   ======================================== */
+@media (max-width: 400px) {
+    .hero-title {
+        font-size: 1.75rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: var(--space-sm) var(--space-lg);
+        font-size: 0.85rem;
+    }
+
+    .section-tag {
+        font-size: 0.7rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .about-image {
+        max-width: 240px;
+    }
+
+    .timeline-content:hover {
+        transform: none;
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+    }
+}
+
+/* ========================================
+   Landscape Mobile
+   ======================================== */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: var(--space-4xl) 0;
+    }
+
+    .hero-stats {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .scroll-indicator {
+        display: none;
+    }
+}
+
+/* ========================================
+   High DPI / Retina Displays
+   ======================================== */
+@media (-webkit-min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+    .hero-bg-elements .floating-shape {
+        filter: blur(60px);
+    }
+}
+
+/* ========================================
+   Reduced Motion
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .orbit {
+        animation: none;
+    }
+
+    .orbit-item {
+        animation: none;
+    }
+
+    .floating-shape {
+        animation: none;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* ========================================
+   Print Styles
+   ======================================== */
+@media print {
+    .navbar,
+    .cursor,
+    .cursor-follower,
+    .loader,
+    .scroll-indicator,
+    .hero-bg-elements,
+    #hero-canvas,
+    .skills-orbit {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    section {
+        page-break-inside: avoid;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+
+    .btn {
+        border: 1px solid black;
+    }
+}
+
+/* ========================================
+   Dark Mode Toggle (if implemented)
+   ======================================== */
+@media (prefers-color-scheme: light) {
+    /* Uncomment to enable light mode support
+    :root {
+        --color-bg: #ffffff;
+        --color-bg-secondary: #f8fafc;
+        --color-bg-tertiary: #f1f5f9;
+        --color-text: #0f172a;
+        --color-text-secondary: #475569;
+        --color-text-muted: #94a3b8;
+        --color-border: rgba(0, 0, 0, 0.1);
+    }
+    */
+}
+
+/* ========================================
+   Touch Device Optimizations
+   ======================================== */
+@media (hover: none) and (pointer: coarse) {
+    /* Remove hover effects that don't work on touch */
+    .project-overlay {
+        opacity: 1;
+        background: rgba(99, 102, 241, 0.7);
+    }
+
+    .project-link {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .magnetic {
+        transition: none;
+    }
+
+    /* Make touch targets larger */
+    .nav-link {
+        padding: var(--space-sm);
+    }
+
+    .filter-btn {
+        padding: var(--space-sm) var(--space-lg);
+    }
+
+    .social-link {
+        width: 54px;
+        height: 54px;
+    }
+}
+
+/* ========================================
+   Focus Visible for Keyboard Navigation
+   ======================================== */
+:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+    outline: none;
+}

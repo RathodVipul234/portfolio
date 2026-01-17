@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Web Scraping Techniques | Vipul Rathod</title>
+    <meta name="description" content="Best practices for building large-scale scraping systems with proxy rotation and anti-blocking techniques.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .blog-post {
+            min-height: 100vh;
+            padding: 120px 0 80px;
+        }
+        .blog-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .blog-category-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 20px;
+        }
+        .blog-post-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .blog-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+        }
+        .blog-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .blog-featured-image {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto 60px;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            background: var(--gradient-card);
+            border: 1px solid var(--color-border);
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .blog-featured-image svg {
+            width: 120px;
+            height: 120px;
+            color: #10b981;
+            opacity: 0.5;
+        }
+        .blog-body {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--color-text-secondary);
+        }
+        .blog-body h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin: 50px 0 20px;
+        }
+        .blog-body h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--color-text);
+            margin: 40px 0 15px;
+        }
+        .blog-body p {
+            margin-bottom: 25px;
+        }
+        .blog-body ul, .blog-body ol {
+            margin-bottom: 25px;
+            padding-left: 30px;
+        }
+        .blog-body li {
+            margin-bottom: 12px;
+        }
+        .blog-body code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+            color: var(--color-primary);
+        }
+        .blog-body pre {
+            background: var(--color-bg-tertiary);
+            padding: 25px;
+            border-radius: var(--radius-lg);
+            overflow-x: auto;
+            margin: 30px 0;
+            border: 1px solid var(--color-border);
+        }
+        .blog-body pre code {
+            background: none;
+            padding: 0;
+            color: var(--color-text);
+        }
+        .blog-body blockquote {
+            border-left: 4px solid #10b981;
+            padding-left: 25px;
+            margin: 30px 0;
+            font-style: italic;
+            color: var(--color-text);
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 40px;
+            transition: all var(--transition-normal);
+        }
+        .back-link:hover {
+            gap: 15px;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 30px 0;
+        }
+        .tech-tag {
+            padding: 8px 16px;
+            background: var(--gradient-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-full);
+            font-size: 0.9rem;
+            color: var(--color-text);
+        }
+        .warning-box {
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 20px 25px;
+            margin: 30px 0;
+        }
+        .warning-box h4 {
+            color: #fbbf24;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .tip-box {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 20px 25px;
+            margin: 30px 0;
+        }
+        .tip-box h4 {
+            color: #10b981;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay"></div>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">AreeVee</a>
+            <div class="nav-links">
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="../index.html#blog">Blog</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <article class="blog-post">
+            <div class="container">
+                <a href="../index.html#blog" class="back-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Back to Articles
+                </a>
+
+                <header class="blog-header">
+                    <span class="blog-category-tag">Web Scraping</span>
+                    <h1 class="blog-post-title">Advanced Web Scraping Techniques</h1>
+                    <div class="blog-meta">
+                        <span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                            15 min read
+                        </span>
+                        <span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                <line x1="3" y1="10" x2="21" y2="10"/>
+                            </svg>
+                            January 2025
+                        </span>
+                    </div>
+                </header>
+
+                <div class="blog-featured-image">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"></path>
+                    </svg>
+                </div>
+
+                <div class="blog-body">
+                    <p>
+                        Web scraping at scale is both an art and a science. Over the years, I've built scraping systems that collect millions of data points daily while respecting website policies and avoiding blocks. Here are the advanced techniques that make it possible.
+                    </p>
+
+                    <div class="warning-box">
+                        <h4>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                <line x1="12" y1="9" x2="12" y2="13"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                            Important Disclaimer
+                        </h4>
+                        <p style="margin-bottom: 0;">
+                            Always respect websites' Terms of Service and robots.txt files. Use scraping responsibly and ethically. The techniques described here are for legitimate data collection purposes only.
+                        </p>
+                    </div>
+
+                    <h2>The Tools of the Trade</h2>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Scrapy</span>
+                        <span class="tech-tag">Playwright</span>
+                        <span class="tech-tag">BeautifulSoup</span>
+                        <span class="tech-tag">Redis</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
+
+                    <h2>1. Intelligent Proxy Rotation</h2>
+                    <p>
+                        Using the same IP address for thousands of requests is a quick way to get blocked. A robust proxy rotation system is essential for large-scale scraping.
+                    </p>
+
+                    <pre><code>import random
+from typing import List
+import httpx
+
+class ProxyRotator:
+    def __init__(self, proxies: List[str]):
+        self.proxies = proxies
+        self.failed_proxies = set()
+
+    def get_proxy(self) -> str:
+        available = [p for p in self.proxies
+                     if p not in self.failed_proxies]
+        if not available:
+            self.failed_proxies.clear()
+            available = self.proxies
+        return random.choice(available)
+
+    def mark_failed(self, proxy: str):
+        self.failed_proxies.add(proxy)
+
+    async def fetch(self, url: str) -> str:
+        proxy = self.get_proxy()
+        try:
+            async with httpx.AsyncClient(proxy=proxy) as client:
+                response = await client.get(url, timeout=30)
+                return response.text
+        except Exception:
+            self.mark_failed(proxy)
+            raise</code></pre>
+
+                    <h3>Proxy Types to Consider</h3>
+                    <ul>
+                        <li><strong>Datacenter proxies:</strong> Fast and cheap, but easier to detect</li>
+                        <li><strong>Residential proxies:</strong> Real IPs from ISPs, harder to block</li>
+                        <li><strong>Mobile proxies:</strong> IPs from mobile carriers, highest trust level</li>
+                        <li><strong>Rotating proxies:</strong> Automatic IP rotation per request</li>
+                    </ul>
+
+                    <h2>2. Browser Fingerprint Management</h2>
+                    <p>
+                        Modern websites don't just check your IP - they analyze your browser fingerprint. This includes screen resolution, installed fonts, WebGL renderer, and dozens of other signals.
+                    </p>
+
+                    <pre><code>from playwright.async_api import async_playwright
+
+async def create_stealth_browser():
+    playwright = await async_playwright().start()
+
+    browser = await playwright.chromium.launch(
+        headless=True,
+        args=[
+            '--disable-blink-features=AutomationControlled',
+            '--disable-dev-shm-usage',
+            '--no-sandbox'
+        ]
+    )
+
+    context = await browser.new_context(
+        viewport={'width': 1920, 'height': 1080},
+        user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                   'AppleWebKit/537.36 (KHTML, like Gecko) '
+                   'Chrome/120.0.0.0 Safari/537.36',
+        locale='en-US',
+        timezone_id='America/New_York'
+    )
+
+    # Override navigator properties
+    await context.add_init_script("""
+        Object.defineProperty(navigator, 'webdriver', {
+            get: () => undefined
+        });
+    """)
+
+    return browser, context</code></pre>
+
+                    <h2>3. Rate Limiting and Delays</h2>
+                    <p>
+                        Hitting a server with 1000 requests per second is a guaranteed way to get blocked (and potentially cause harm). Implement intelligent rate limiting that mimics human behavior.
+                    </p>
+
+                    <pre><code>import asyncio
+import random
+
+class AdaptiveRateLimiter:
+    def __init__(self, base_delay: float = 1.0):
+        self.base_delay = base_delay
+        self.current_delay = base_delay
+        self.consecutive_errors = 0
+
+    async def wait(self):
+        # Add randomness to appear more human
+        jitter = random.uniform(0.5, 1.5)
+        await asyncio.sleep(self.current_delay * jitter)
+
+    def on_success(self):
+        self.consecutive_errors = 0
+        # Gradually speed up on success
+        self.current_delay = max(
+            self.base_delay,
+            self.current_delay * 0.9
+        )
+
+    def on_error(self):
+        self.consecutive_errors += 1
+        # Exponential backoff on errors
+        self.current_delay = min(
+            60,  # Max 60 seconds
+            self.current_delay * (2 ** self.consecutive_errors)
+        )</code></pre>
+
+                    <div class="tip-box">
+                        <h4>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 16v-4M12 8h.01"/>
+                            </svg>
+                            Pro Tip
+                        </h4>
+                        <p style="margin-bottom: 0;">
+                            Analyze the website's own traffic patterns. If real users typically make 1-2 requests per minute, your scraper should do the same.
+                        </p>
+                    </div>
+
+                    <h2>4. Session and Cookie Management</h2>
+                    <p>
+                        Many websites track sessions to detect bots. Properly managing cookies and maintaining session state can make your scraper appear more legitimate.
+                    </p>
+
+                    <pre><code>import httpx
+from http.cookiejar import CookieJar
+
+class SessionManager:
+    def __init__(self):
+        self.sessions = {}
+
+    def get_session(self, domain: str) -> httpx.AsyncClient:
+        if domain not in self.sessions:
+            self.sessions[domain] = httpx.AsyncClient(
+                cookies=CookieJar(),
+                follow_redirects=True,
+                timeout=30
+            )
+        return self.sessions[domain]
+
+    async def close_all(self):
+        for session in self.sessions.values():
+            await session.aclose()</code></pre>
+
+                    <h2>5. Handling JavaScript-Heavy Sites</h2>
+                    <p>
+                        Many modern websites render content dynamically with JavaScript. For these, you need a headless browser that can execute JavaScript and wait for content to load.
+                    </p>
+
+                    <pre><code>async def scrape_dynamic_page(url: str) -> str:
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=True)
+        page = await browser.new_page()
+
+        await page.goto(url)
+
+        # Wait for specific content to load
+        await page.wait_for_selector('.product-list', timeout=10000)
+
+        # Or wait for network to be idle
+        await page.wait_for_load_state('networkidle')
+
+        content = await page.content()
+        await browser.close()
+
+        return content</code></pre>
+
+                    <h2>6. Data Pipeline Architecture</h2>
+                    <p>
+                        For large-scale scraping, you need a robust pipeline that separates concerns:
+                    </p>
+
+                    <ol>
+                        <li><strong>URL Queue:</strong> Redis-based queue for URLs to scrape</li>
+                        <li><strong>Fetcher Workers:</strong> Distributed workers that fetch pages</li>
+                        <li><strong>Parser Workers:</strong> Extract structured data from HTML</li>
+                        <li><strong>Data Store:</strong> PostgreSQL for structured storage</li>
+                        <li><strong>Monitoring:</strong> Track success rates, latency, and errors</li>
+                    </ol>
+
+                    <pre><code># Using Redis as a URL queue
+import redis.asyncio as redis
+
+class URLQueue:
+    def __init__(self, redis_url: str):
+        self.redis = redis.from_url(redis_url)
+        self.queue_key = "scraping:urls"
+        self.seen_key = "scraping:seen"
+
+    async def add_url(self, url: str):
+        # Only add if not already seen
+        if not await self.redis.sismember(self.seen_key, url):
+            await self.redis.sadd(self.seen_key, url)
+            await self.redis.rpush(self.queue_key, url)
+
+    async def get_url(self) -> str | None:
+        result = await self.redis.lpop(self.queue_key)
+        return result.decode() if result else None
+
+    async def queue_size(self) -> int:
+        return await self.redis.llen(self.queue_key)</code></pre>
+
+                    <h2>7. Error Handling and Recovery</h2>
+                    <p>
+                        Things will go wrong. Networks fail, websites change, and CAPTCHAs appear. Build robust error handling from the start.
+                    </p>
+
+                    <pre><code>from tenacity import retry, stop_after_attempt, wait_exponential
+
+@retry(
+    stop=stop_after_attempt(3),
+    wait=wait_exponential(multiplier=1, min=4, max=60)
+)
+async def fetch_with_retry(url: str, session: httpx.AsyncClient) -> str:
+    response = await session.get(url)
+
+    if response.status_code == 429:  # Too Many Requests
+        raise RateLimitError("Rate limited, backing off")
+
+    if response.status_code == 403:  # Forbidden
+        raise BlockedError("IP might be blocked")
+
+    response.raise_for_status()
+    return response.text</code></pre>
+
+                    <h2>8. CAPTCHA Handling</h2>
+                    <p>
+                        When you encounter CAPTCHAs, you have several options:
+                    </p>
+                    <ul>
+                        <li>Slow down and reduce your request rate</li>
+                        <li>Rotate to a different IP/proxy</li>
+                        <li>Use CAPTCHA solving services (for legitimate use cases)</li>
+                        <li>Implement browser automation with human-like behavior</li>
+                    </ul>
+
+                    <blockquote>
+                        "The best way to handle CAPTCHAs is to avoid triggering them in the first place. Slow down, vary your patterns, and respect the website."
+                    </blockquote>
+
+                    <h2>Best Practices Summary</h2>
+                    <ol>
+                        <li><strong>Respect robots.txt:</strong> It's both ethical and legal protection</li>
+                        <li><strong>Identify yourself:</strong> Use a descriptive User-Agent with contact info</li>
+                        <li><strong>Rate limit aggressively:</strong> Slow scraping is reliable scraping</li>
+                        <li><strong>Handle errors gracefully:</strong> Retry with backoff, don't hammer</li>
+                        <li><strong>Store raw data:</strong> Parse later, you can't re-scrape deleted pages</li>
+                        <li><strong>Monitor continuously:</strong> Detect blocks and changes quickly</li>
+                        <li><strong>Stay updated:</strong> Anti-bot technology evolves constantly</li>
+                    </ol>
+
+                    <h2>Conclusion</h2>
+                    <p>
+                        Web scraping at scale requires careful engineering and ethical consideration. The techniques described here have helped me build systems that reliably collect data while maintaining good relationships with the websites I scrape.
+                    </p>
+
+                    <p>
+                        Remember: the goal is to collect data, not to play cat and mouse with website operators. When in doubt, reach out to the website owner - many will provide API access or data exports if you explain your legitimate use case.
+                    </p>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="footer-logo">AreeVee</span>
+                    <p>Python Developer & Tech Lead building scalable solutions.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="../index.html#hero">Home</a>
+                    <a href="../index.html#about">About</a>
+                    <a href="../index.html#projects">Projects</a>
+                    <a href="../index.html#contact">Contact</a>
+                    <a href="https://linkedin.com/in/rathodvipul99" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://github.com/RathodVipul234" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Vipul Rathod. All rights reserved.</p>
+                <p>Built with passion and code.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
