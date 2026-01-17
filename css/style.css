@@ -1909,11 +1909,15 @@ a.contact-value:hover {
 
 /* ========================================
    In-App Browser Fixes (Instagram, Facebook, etc.)
-   Disable 3D canvas and complex animations to prevent blinking
+   Simplify animations to prevent blinking
    ======================================== */
-.in-app-browser #hero-canvas,
-.in-app-browser #skills-canvas {
+.in-app-browser #hero-canvas {
     display: none !important;
+}
+
+/* Keep skills canvas but reduce opacity */
+.in-app-browser #skills-canvas {
+    opacity: 0.5 !important;
 }
 
 .in-app-browser .hero {
@@ -1921,9 +1925,9 @@ a.contact-value:hover {
 }
 
 .in-app-browser .hero-content {
-    background: rgba(10, 10, 15, 0.9) !important;
-    padding: 40px !important;
-    border-radius: 20px !important;
+    background: rgba(10, 10, 15, 0.85) !important;
+    padding: 30px !important;
+    border-radius: 16px !important;
 }
 
 .in-app-browser .hero-title,
@@ -1942,6 +1946,14 @@ a.contact-value:hover {
 .in-app-browser .floating-elements,
 .in-app-browser .hero-bg-elements {
     display: none !important;
+}
+
+/* Add gradient background to skills section for in-app browsers */
+.in-app-browser .skills {
+    background: linear-gradient(180deg,
+        var(--color-bg) 0%,
+        rgba(99, 102, 241, 0.05) 50%,
+        var(--color-bg) 100%) !important;
 }
 
 .in-app-browser .loader {

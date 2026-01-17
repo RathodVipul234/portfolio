@@ -268,17 +268,51 @@
     </style>
 </head>
 <body>
-    <div class="noise-overlay"></div>
+    <!-- Detect in-app browsers and apply saved theme -->
+    <script>
+        (function() {
+            var ua = navigator.userAgent || '';
+            if (/Instagram|FBAN|FBAV|Twitter|Line|WhatsApp|Snapchat/i.test(ua)) {
+                document.body.classList.add('in-app-browser');
+            }
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light-theme');
+            }
+        })();
+    </script>
 
-    <nav class="nav">
+    <!-- Navigation -->
+    <nav class="navbar">
         <div class="nav-container">
-            <a href="../index.html" class="nav-logo">AreeVee</a>
-            <div class="nav-links">
-                <a href="../index.html#about">About</a>
-                <a href="../index.html#projects">Projects</a>
-                <a href="../index.html#blog">Blog</a>
-                <a href="../index.html#contact">Contact</a>
-            </div>
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-text">Vipul Rathod</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../index.html#blog" class="nav-link active">Blog</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
         </div>
     </nav>
 
@@ -493,7 +527,7 @@ app = FastAPI(default_response_class=ORJSONResponse)</code></pre>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <span class="footer-logo">AreeVee</span>
+                    <span class="footer-logo">Vipul Rathod</span>
                     <p>Python Developer & Tech Lead building scalable solutions.</p>
                 </div>
                 <div class="footer-links">
@@ -511,5 +545,32 @@ app = FastAPI(default_response_class=ORJSONResponse)</code></pre>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('light-theme');
+                localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+            });
+        }
+
+        // Mobile Navigation
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        if (navToggle && navMenu) {
+            navToggle.addEventListener('click', () => {
+                navToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    navToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+    </script>
 </body>
 </html>
