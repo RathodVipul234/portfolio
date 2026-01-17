@@ -9,8 +9,10 @@ class SkillsScene {
         this.canvas = document.getElementById('skills-canvas');
         if (!this.canvas) return;
 
-        // Mobile detection
-        this.isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        // Mobile and in-app browser detection
+        const ua = navigator.userAgent || '';
+        this.isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+        this.isInAppBrowser = /Instagram|FBAN|FBAV|Twitter|Line|WhatsApp|Snapchat/i.test(ua);
 
         this.scene = null;
         this.camera = null;
@@ -265,13 +267,20 @@ class SkillsScene {
 
         if (!this.isVisible) return;
 
-        // Frame limiting for smooth performance
-        if (currentTime - this.lastFrameTime < this.frameInterval) {
-            return;
+        // Check if we should update animations (frame limiting)
+        // But ALWAYS render to prevent blinking in in-app browsers
+        const shouldUpdate = !currentTime || (currentTime - this.lastFrameTime >= this.frameInterval);
+        if (shouldUpdate) {
+            this.lastFrameTime = currentTime || 0;
         }
-        this.lastFrameTime = currentTime;
 
         const elapsedTime = this.clock.getElapsedTime();
+
+        // Skip heavy animations if frame limiting, but still render
+        if (!shouldUpdate) {
+            this.renderer.render(this.scene, this.camera);
+            return;
+        }
 
         // Animate particles
         if (this.particles) {

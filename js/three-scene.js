@@ -9,12 +9,19 @@ class ThreeScene {
         this.canvas = document.getElementById('hero-canvas');
         if (!this.canvas) return;
 
-        // Mobile detection
-        this.isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        // Mobile and in-app browser detection
+        const ua = navigator.userAgent || '';
+        this.isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
         this.isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
+        this.isInAppBrowser = /Instagram|FBAN|FBAV|Twitter|Line|WhatsApp|Snapchat/i.test(ua);
 
         // Performance settings based on device
-        this.performanceMode = this.isMobile ? 'low' : (this.isTablet ? 'medium' : 'high');
+        // Use lower settings for in-app browsers to prevent issues
+        if (this.isInAppBrowser) {
+            this.performanceMode = 'low';
+        } else {
+            this.performanceMode = this.isMobile ? 'low' : (this.isTablet ? 'medium' : 'high');
+        }
 
         this.scene = null;
         this.camera = null;
@@ -515,26 +522,42 @@ class ThreeScene {
         const img = new Image();
         img.crossOrigin = 'anonymous';
 
+        // Bigger logos on mobile for visibility
+        const logoScale = this.isMobile ? 5.5 : 6;
+        const backdropSize = this.isMobile ? 3.2 : 3.5;
+
         const createLogo = (texture) => {
             const material = new THREE.SpriteMaterial({
                 map: texture,
                 transparent: true
             });
             const sprite = new THREE.Sprite(material);
-            sprite.scale.set(4.5, 4.5, 1);
+            sprite.scale.set(logoScale, logoScale, 1);
             group.add(sprite);
 
-            // Glowing backdrop
-            const backdropGeometry = new THREE.CircleGeometry(2.8, 32);
+            // Glowing backdrop - bigger and brighter
+            const backdropGeometry = new THREE.CircleGeometry(backdropSize, 32);
             const backdropMaterial = new THREE.MeshBasicMaterial({
                 color: color,
                 transparent: true,
-                opacity: 0.25,
+                opacity: 0.35,
                 side: THREE.DoubleSide
             });
             const backdrop = new THREE.Mesh(backdropGeometry, backdropMaterial);
             backdrop.position.z = -0.1;
             group.add(backdrop);
+
+            // Extra outer glow
+            const outerGlowGeometry = new THREE.CircleGeometry(backdropSize * 1.5, 32);
+            const outerGlowMaterial = new THREE.MeshBasicMaterial({
+                color: color,
+                transparent: true,
+                opacity: 0.15,
+                side: THREE.DoubleSide
+            });
+            const outerGlow = new THREE.Mesh(outerGlowGeometry, outerGlowMaterial);
+            outerGlow.position.z = -0.2;
+            group.add(outerGlow);
         };
 
         img.onload = () => {
@@ -630,9 +653,9 @@ class ThreeScene {
     }
 
     createFloatingCodeSymbols() {
-        // Floating programming symbols: { } [ ] < > / = ; => () && ||
+        // Floating programming symbols (no brackets for cleaner look)
         this.codeSymbols = [];
-        const symbols = ['{', '}', '[', ']', '<', '>', '/', '=', ';', '=>', '()', '&&', '||', '//', '/*', '*/', 'if', 'for', 'def', 'class', 'import', 'return', 'async', 'await', 'const', 'let', 'function', '===', '!==', '++', '--'];
+        const symbols = ['<>', '/>', '=', ';', '=>', '()', '&&', '||', '//', 'if', 'for', 'def', 'class', 'import', 'return', 'async', 'await', 'const', 'let', 'fn', '===', '!=', '++', '--', '#', '@', '$', '%', '::'];
 
         const colors = [0x6366f1, 0x22d3ee, 0xf472b6, 0x10b981, 0xfbbf24, 0xff6b6b];
 
@@ -1126,18 +1149,25 @@ class ThreeScene {
     animate(currentTime) {
         requestAnimationFrame(this.animate.bind(this));
 
-        // Frame limiting for smooth performance
-        if (currentTime - this.lastFrameTime < this.frameInterval) {
-            return;
+        // Check if we should update animations (frame limiting)
+        // But ALWAYS render to prevent blinking in in-app browsers
+        const shouldUpdate = !currentTime || (currentTime - this.lastFrameTime >= this.frameInterval);
+        if (shouldUpdate) {
+            this.lastFrameTime = currentTime || 0;
         }
-        this.lastFrameTime = currentTime;
 
         const time = this.clock.getElapsedTime();
 
-        // Smooth mouse (reduced effect on mobile)
+        // Always update mouse smoothly to prevent jerky movement
         const mouseSmooth = this.isMobile ? 0.03 : 0.05;
         this.mouse.x += (this.targetMouse.x - this.mouse.x) * mouseSmooth;
         this.mouse.y += (this.targetMouse.y - this.mouse.y) * mouseSmooth;
+
+        // Skip heavy animations if frame limiting, but still render
+        if (!shouldUpdate) {
+            this.renderer.render(this.scene, this.camera);
+            return;
+        }
 
         // Animate simple particles on mobile
         if (this.simpleParticles) {
@@ -1152,7 +1182,7 @@ class ThreeScene {
 
             // Update core shader
             const coreMesh = this.centralCore.children[0];
-            if (coreMesh.material.uniforms) {
+            if (coreMesh && coreMesh.material && coreMesh.material.uniforms) {
                 coreMesh.material.uniforms.time.value = time;
             }
 
