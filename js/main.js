@@ -9,11 +9,37 @@ class Portfolio {
     }
 
     init() {
+        this.initThemeToggle();
         this.initCustomCursor();
         this.initMagneticButtons();
         this.initNavigation();
         this.initProjectFilters();
         this.initFormHandling();
+    }
+
+    /**
+     * Theme Toggle (Dark/Light Mode)
+     */
+    initThemeToggle() {
+        const toggle = document.getElementById('theme-toggle');
+        if (!toggle) return;
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-theme');
+        }
+
+        toggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+
+            // Save preference
+            if (document.body.classList.contains('light-theme')) {
+                localStorage.setItem('theme', 'light');
+            } else {
+                localStorage.setItem('theme', 'dark');
+            }
+        });
     }
 
     /**
