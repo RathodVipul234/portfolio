@@ -1887,34 +1887,34 @@ a.contact-value:hover {
 
 /* ========================================
    In-App Browser Fixes (Instagram, Facebook, etc.)
-   Simplified styles to prevent blinking/flickering
+   Completely disable animations to prevent blinking
    ======================================== */
-.in-app-browser .hero-title {
-    text-shadow: none;
-    color: #ffffff;
+.in-app-browser * {
+    animation: none !important;
+    transition: none !important;
+}
+
+.in-app-browser .hero-title,
+.in-app-browser .hero-subtitle,
+.in-app-browser .hero-description,
+.in-app-browser .title-line {
+    text-shadow: none !important;
+    filter: none !important;
+    transform: none !important;
+    opacity: 1 !important;
 }
 
 .in-app-browser .name-highlight {
-    background: none;
-    -webkit-background-clip: unset;
-    -webkit-text-fill-color: #6366f1;
-    background-clip: unset;
-    animation: none;
-    filter: none;
-    color: #6366f1;
-}
-
-.in-app-browser .hero-subtitle {
-    text-shadow: none;
-}
-
-.in-app-browser .hero-description {
-    text-shadow: none;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: #a78bfa !important;
+    background-clip: unset !important;
+    filter: none !important;
+    color: #a78bfa !important;
 }
 
 .in-app-browser .typing-cursor {
-    animation: none;
-    opacity: 1;
+    display: none !important;
 }
 
 .in-app-browser .loader {
@@ -1926,7 +1926,13 @@ a.contact-value:hover {
     display: none !important;
 }
 
-/* Disable heavy 3D canvas in in-app browsers */
-.in-app-browser #hero-canvas {
-    opacity: 0.3;
+/* Completely hide 3D canvas in in-app browsers */
+.in-app-browser #hero-canvas,
+.in-app-browser #skills-canvas {
+    display: none !important;
+}
+
+/* Add a simple gradient background instead */
+.in-app-browser .hero {
+    background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%) !important;
 }

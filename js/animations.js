@@ -55,6 +55,12 @@ class Animations {
         const typingText = document.querySelector('.typing-text');
         if (!typingText) return;
 
+        // Disable typing animation for in-app browsers to prevent blinking
+        if (document.body.classList.contains('in-app-browser')) {
+            typingText.textContent = 'Python Developer & Tech Lead';
+            return;
+        }
+
         const texts = [
             'Vipul Rathod',
             'Python Developer',

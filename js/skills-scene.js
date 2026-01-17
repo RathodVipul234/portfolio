@@ -14,6 +14,14 @@ class SkillsScene {
         this.isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
         this.isInAppBrowser = /Instagram|FBAN|FBAV|Twitter|Line|WhatsApp|Snapchat/i.test(ua);
 
+        // Completely disable for in-app browsers
+        if (this.isInAppBrowser) {
+            if (this.canvas) {
+                this.canvas.style.display = 'none';
+            }
+            return;
+        }
+
         this.scene = null;
         this.camera = null;
         this.renderer = null;
