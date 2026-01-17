@@ -278,14 +278,12 @@
 
     /* Certifications */
     .cert-grid {
-        flex-direction: column;
-        align-items: center;
+        grid-template-columns: 1fr;
+        max-width: 300px;
     }
 
     .cert-item {
         width: 100%;
-        max-width: 300px;
-        justify-content: center;
     }
 
     /* Blog */

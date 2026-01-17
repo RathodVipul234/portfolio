@@ -1462,15 +1462,17 @@ section {
 }
 
 .cert-grid {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-lg);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .cert-item {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: var(--space-sm);
     padding: var(--space-md) var(--space-lg);
     background: var(--gradient-card);
