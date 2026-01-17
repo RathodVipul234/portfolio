@@ -1,12 +1,16 @@
 /**
  * Three.js 3D Skills Section Animation
  * Floating tech logos with particle effects
+ * Mobile-optimized for smooth performance
  */
 
 class SkillsScene {
     constructor() {
         this.canvas = document.getElementById('skills-canvas');
         if (!this.canvas) return;
+
+        // Mobile detection
+        this.isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
         this.scene = null;
         this.camera = null;
@@ -17,6 +21,11 @@ class SkillsScene {
         this.clock = new THREE.Clock();
         this.mouse = { x: 0, y: 0 };
         this.isVisible = false;
+
+        // Frame limiting
+        this.lastFrameTime = 0;
+        this.targetFPS = this.isMobile ? 30 : 60;
+        this.frameInterval = 1000 / this.targetFPS;
 
         // Tech logos for the background
         this.techData = [
@@ -39,8 +48,10 @@ class SkillsScene {
         this.createCamera();
         this.createRenderer();
         this.createParticles();
-        this.createFloatingLogos();
-        this.createEnergyRings();
+        if (!this.isMobile) {
+            this.createFloatingLogos();
+            this.createEnergyRings();
+        }
         this.addEventListeners();
         this.animate();
     }
@@ -51,23 +62,26 @@ class SkillsScene {
 
     createCamera() {
         const aspect = window.innerWidth / window.innerHeight;
-        this.camera = new THREE.PerspectiveCamera(60, aspect, 0.1, 1000);
-        this.camera.position.z = 30;
+        const fov = this.isMobile ? 70 : 60;
+        this.camera = new THREE.PerspectiveCamera(fov, aspect, 0.1, 1000);
+        this.camera.position.z = this.isMobile ? 35 : 30;
     }
 
     createRenderer() {
         this.renderer = new THREE.WebGLRenderer({
             canvas: this.canvas,
-            antialias: true,
-            alpha: true
+            antialias: !this.isMobile,
+            alpha: true,
+            powerPreference: this.isMobile ? 'low-power' : 'high-performance'
         });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        const maxPixelRatio = this.isMobile ? 1.5 : 2;
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxPixelRatio));
         this.renderer.setClearColor(0x000000, 0);
     }
 
     createParticles() {
-        const particleCount = 500;
+        const particleCount = this.isMobile ? 150 : 500;
         const positions = new Float32Array(particleCount * 3);
         const colors = new Float32Array(particleCount * 3);
         const sizes = new Float32Array(particleCount);
@@ -246,10 +260,16 @@ class SkillsScene {
         this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
     }
 
-    animate() {
+    animate(currentTime) {
         requestAnimationFrame(this.animate.bind(this));
 
         if (!this.isVisible) return;
+
+        // Frame limiting for smooth performance
+        if (currentTime - this.lastFrameTime < this.frameInterval) {
+            return;
+        }
+        this.lastFrameTime = currentTime;
 
         const elapsedTime = this.clock.getElapsedTime();
 
@@ -259,22 +279,25 @@ class SkillsScene {
             this.particles.rotation.y = elapsedTime * 0.02;
         }
 
-        // Animate floating logos
-        this.floatingLogos.forEach(logo => {
-            const data = logo.userData;
-            logo.position.y = data.originalPos.y + Math.sin(elapsedTime * data.speed + data.phase) * data.amplitude;
-            logo.position.x = data.originalPos.x + Math.cos(elapsedTime * data.speed * 0.5 + data.phase) * (data.amplitude * 0.5);
-        });
+        // Animate floating logos (desktop only)
+        if (!this.isMobile) {
+            this.floatingLogos.forEach(logo => {
+                const data = logo.userData;
+                logo.position.y = data.originalPos.y + Math.sin(elapsedTime * data.speed + data.phase) * data.amplitude;
+                logo.position.x = data.originalPos.x + Math.cos(elapsedTime * data.speed * 0.5 + data.phase) * (data.amplitude * 0.5);
+            });
 
-        // Animate energy rings
-        this.energyRings.forEach((ring, index) => {
-            ring.rotation.z += ring.userData.speed;
-            ring.material.opacity = 0.15 + Math.sin(elapsedTime + index) * 0.1;
-        });
+            // Animate energy rings
+            this.energyRings.forEach((ring, index) => {
+                ring.rotation.z += ring.userData.speed;
+                ring.material.opacity = 0.15 + Math.sin(elapsedTime + index) * 0.1;
+            });
+        }
 
-        // Camera subtle movement
-        this.camera.position.x = this.mouse.x * 2;
-        this.camera.position.y = this.mouse.y * 1;
+        // Camera subtle movement (reduced on mobile)
+        const cameraMove = this.isMobile ? 0.5 : 1;
+        this.camera.position.x = this.mouse.x * 2 * cameraMove;
+        this.camera.position.y = this.mouse.y * 1 * cameraMove;
 
         this.renderer.render(this.scene, this.camera);
     }

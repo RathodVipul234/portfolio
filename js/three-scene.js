@@ -1,12 +1,20 @@
 /**
  * ULTRA AURA 9999+++ 3D Animation
  * Epic tech logos with energy fields, lightning, and maximum visual impact
+ * Mobile-optimized for smooth performance
  */
 
 class ThreeScene {
     constructor() {
         this.canvas = document.getElementById('hero-canvas');
         if (!this.canvas) return;
+
+        // Mobile detection
+        this.isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        this.isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
+
+        // Performance settings based on device
+        this.performanceMode = this.isMobile ? 'low' : (this.isTablet ? 'medium' : 'high');
 
         this.scene = null;
         this.camera = null;
@@ -30,6 +38,11 @@ class ThreeScene {
         this.mouse = { x: 0, y: 0 };
         this.targetMouse = { x: 0, y: 0 };
         this.clock = new THREE.Clock();
+
+        // Frame limiting for smooth performance
+        this.lastFrameTime = 0;
+        this.targetFPS = this.isMobile ? 30 : 60;
+        this.frameInterval = 1000 / this.targetFPS;
 
         this.techData = [
             { name: 'Python', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg', color: 0x3776ab },
@@ -58,20 +71,74 @@ class ThreeScene {
         this.createCamera();
         this.createRenderer();
         this.createEpicCore();
-        this.createEnergyField();
-        this.createAuraSpheres();
+
+        // Load effects based on performance mode
+        if (this.performanceMode !== 'low') {
+            this.createEnergyField();
+            this.createAuraSpheres();
+        }
+
         this.createTechNodes();
-        this.createLightning();
-        this.createEnergyWaves();
-        // IT-themed creative elements
-        this.createFloatingCodeSymbols();
-        this.createBinaryRain();
-        this.createDataPackets();
-        this.createNetworkMesh();
-        this.createTerminalText();
+
+        if (this.performanceMode === 'high') {
+            this.createLightning();
+            this.createEnergyWaves();
+            this.createFloatingCodeSymbols();
+            this.createBinaryRain();
+            this.createDataPackets();
+            this.createNetworkMesh();
+            this.createTerminalText();
+        } else if (this.performanceMode === 'medium') {
+            this.createLightning();
+            this.createFloatingCodeSymbols();
+            this.createDataPackets();
+        } else {
+            // Mobile: minimal effects for smooth performance
+            this.createSimpleParticles();
+        }
+
         this.createCosmicDust();
         this.addEventListeners();
         this.animate();
+    }
+
+    createSimpleParticles() {
+        // Lightweight particles for mobile
+        const particleCount = 100;
+        const positions = new Float32Array(particleCount * 3);
+        const colors = new Float32Array(particleCount * 3);
+
+        const colorOptions = [
+            new THREE.Color(0x6366f1),
+            new THREE.Color(0x22d3ee),
+            new THREE.Color(0xf472b6),
+        ];
+
+        for (let i = 0; i < particleCount; i++) {
+            positions[i * 3] = (Math.random() - 0.5) * 60;
+            positions[i * 3 + 1] = (Math.random() - 0.5) * 40;
+            positions[i * 3 + 2] = (Math.random() - 0.5) * 30;
+
+            const color = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+            colors[i * 3] = color.r;
+            colors[i * 3 + 1] = color.g;
+            colors[i * 3 + 2] = color.b;
+        }
+
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        const material = new THREE.PointsMaterial({
+            size: 2,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.6,
+            blending: THREE.AdditiveBlending
+        });
+
+        this.simpleParticles = new THREE.Points(geometry, material);
+        this.scene.add(this.simpleParticles);
     }
 
     createScene() {
@@ -80,18 +147,24 @@ class ThreeScene {
 
     createCamera() {
         const aspect = window.innerWidth / window.innerHeight;
-        this.camera = new THREE.PerspectiveCamera(60, aspect, 0.1, 1000);
-        this.camera.position.z = 40;
+        // Wider FOV on mobile to see more content
+        const fov = this.isMobile ? 75 : 60;
+        this.camera = new THREE.PerspectiveCamera(fov, aspect, 0.1, 1000);
+        // Pull camera back on mobile for better view
+        this.camera.position.z = this.isMobile ? 50 : 40;
     }
 
     createRenderer() {
         this.renderer = new THREE.WebGLRenderer({
             canvas: this.canvas,
-            antialias: true,
-            alpha: true
+            antialias: !this.isMobile, // Disable antialiasing on mobile for performance
+            alpha: true,
+            powerPreference: this.isMobile ? 'low-power' : 'high-performance'
         });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        // Lower pixel ratio on mobile for better performance
+        const maxPixelRatio = this.isMobile ? 1.5 : 2;
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxPixelRatio));
         this.renderer.setClearColor(0x030308, 1);
     }
 
@@ -379,42 +452,54 @@ class ThreeScene {
         const positions = [];
         const aspect = window.innerWidth / window.innerHeight;
 
-        // Screen edge positions - spread logos to corners and edges
-        const edgeX = 28 * Math.min(aspect, 1.8); // Horizontal spread
-        const edgeY = 18; // Vertical spread
+        if (this.isMobile) {
+            // Mobile: Circular arrangement that fits screen
+            const radius = 18;
+            for (let i = 0; i < count; i++) {
+                const angle = (i / count) * Math.PI * 2 - Math.PI / 2;
+                positions.push({
+                    x: Math.cos(angle) * radius * 0.9,
+                    y: Math.sin(angle) * radius * 1.2,
+                    z: -5 + (Math.random() - 0.5) * 4
+                });
+            }
+            return positions;
+        }
+
+        // Desktop: Screen edge positions - spread logos to corners and edges
+        const edgeX = 28 * Math.min(aspect, 1.8);
+        const edgeY = 18;
         const midX = edgeX * 0.5;
         const midY = edgeY * 0.5;
 
-        // Define positions around the screen edges (corners + edges)
         const edgePositions = [
             // 4 Corners
-            { x: -edgeX, y: edgeY, z: -5 },      // Top-left
-            { x: edgeX, y: edgeY, z: -5 },       // Top-right
-            { x: -edgeX, y: -edgeY, z: -5 },     // Bottom-left
-            { x: edgeX, y: -edgeY, z: -5 },      // Bottom-right
+            { x: -edgeX, y: edgeY, z: -5 },
+            { x: edgeX, y: edgeY, z: -5 },
+            { x: -edgeX, y: -edgeY, z: -5 },
+            { x: edgeX, y: -edgeY, z: -5 },
 
-            // Top edge (3 logos between corners)
+            // Top edge
             { x: -midX, y: edgeY, z: -8 },
             { x: 0, y: edgeY + 2, z: -10 },
             { x: midX, y: edgeY, z: -8 },
 
-            // Bottom edge (3 logos between corners)
+            // Bottom edge
             { x: -midX, y: -edgeY, z: -8 },
             { x: 0, y: -edgeY - 2, z: -10 },
             { x: midX, y: -edgeY, z: -8 },
 
-            // Left edge (3 logos between corners)
+            // Left edge
             { x: -edgeX - 2, y: midY, z: -6 },
             { x: -edgeX - 3, y: 0, z: -8 },
             { x: -edgeX - 2, y: -midY, z: -6 },
 
-            // Right edge (3 logos between corners)
+            // Right edge
             { x: edgeX + 2, y: midY, z: -6 },
             { x: edgeX + 3, y: 0, z: -8 },
             { x: edgeX + 2, y: -midY, z: -6 },
         ];
 
-        // Use predefined positions, add slight randomness
         for (let i = 0; i < count; i++) {
             const basePos = edgePositions[i % edgePositions.length];
             positions.push({
@@ -998,11 +1083,20 @@ class ThreeScene {
     addEventListeners() {
         window.addEventListener('resize', this.onResize.bind(this));
         window.addEventListener('mousemove', this.onMouseMove.bind(this));
+
+        // Touch support for mobile
+        if (this.isMobile) {
+            window.addEventListener('touchmove', this.onTouchMove.bind(this), { passive: true });
+            window.addEventListener('deviceorientation', this.onDeviceOrientation.bind(this), { passive: true });
+        }
     }
 
     onResize() {
         const width = window.innerWidth;
         const height = window.innerHeight;
+
+        // Update mobile detection on resize
+        this.isMobile = width <= 768;
 
         this.camera.aspect = width / height;
         this.camera.updateProjectionMatrix();
@@ -1014,14 +1108,42 @@ class ThreeScene {
         this.targetMouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
     }
 
-    animate() {
+    onTouchMove(event) {
+        if (event.touches.length > 0) {
+            this.targetMouse.x = (event.touches[0].clientX / window.innerWidth) * 2 - 1;
+            this.targetMouse.y = -(event.touches[0].clientY / window.innerHeight) * 2 + 1;
+        }
+    }
+
+    onDeviceOrientation(event) {
+        if (event.gamma && event.beta) {
+            // Use device tilt for subtle movement
+            this.targetMouse.x = (event.gamma / 45) * 0.5; // Left/right tilt
+            this.targetMouse.y = ((event.beta - 45) / 45) * 0.5; // Forward/back tilt
+        }
+    }
+
+    animate(currentTime) {
         requestAnimationFrame(this.animate.bind(this));
+
+        // Frame limiting for smooth performance
+        if (currentTime - this.lastFrameTime < this.frameInterval) {
+            return;
+        }
+        this.lastFrameTime = currentTime;
 
         const time = this.clock.getElapsedTime();
 
-        // Smooth mouse
-        this.mouse.x += (this.targetMouse.x - this.mouse.x) * 0.05;
-        this.mouse.y += (this.targetMouse.y - this.mouse.y) * 0.05;
+        // Smooth mouse (reduced effect on mobile)
+        const mouseSmooth = this.isMobile ? 0.03 : 0.05;
+        this.mouse.x += (this.targetMouse.x - this.mouse.x) * mouseSmooth;
+        this.mouse.y += (this.targetMouse.y - this.mouse.y) * mouseSmooth;
+
+        // Animate simple particles on mobile
+        if (this.simpleParticles) {
+            this.simpleParticles.rotation.y = time * 0.1;
+            this.simpleParticles.rotation.x = Math.sin(time * 0.05) * 0.1;
+        }
 
         // Animate central core
         if (this.centralCore) {
