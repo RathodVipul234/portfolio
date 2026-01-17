@@ -64,8 +64,11 @@ class Animations {
             'Problem Solver'
         ];
 
+        // Ensure the text is visible immediately
+        typingText.textContent = texts[0];
+
         let textIndex = 0;
-        let charIndex = texts[0].length; // Start with full text
+        let charIndex = texts[0].length;
         let isDeleting = true;
         let typeSpeed = 100;
 
@@ -94,8 +97,8 @@ class Animations {
             setTimeout(type, typeSpeed);
         }
 
-        // Start after delay
-        setTimeout(type, 2000);
+        // Start with shorter delay - content already visible
+        setTimeout(type, 1500);
     }
 
     animateSkillBars() {

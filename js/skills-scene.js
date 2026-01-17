@@ -154,10 +154,10 @@ class SkillsScene {
     }
 
     createFloatingLogos() {
-        // Adjust settings for mobile
-        const logoScale = this.isMobile ? 5 : 6;
-        const radius = this.isMobile ? 15 : 25;
-        const opacity = this.isMobile ? 0.6 : 0.4;
+        // Adjust settings for mobile - larger and more visible
+        const logoScale = this.isMobile ? 6 : 6;
+        const radius = this.isMobile ? 12 : 25;
+        const opacity = this.isMobile ? 0.85 : 0.4;
 
         this.techData.forEach((tech, index) => {
             const img = new Image();
@@ -294,15 +294,18 @@ class SkillsScene {
             this.particles.rotation.y = elapsedTime * 0.02;
         }
 
-        // Animate floating logos (desktop only)
-        if (!this.isMobile) {
-            this.floatingLogos.forEach(logo => {
-                const data = logo.userData;
-                logo.position.y = data.originalPos.y + Math.sin(elapsedTime * data.speed + data.phase) * data.amplitude;
-                logo.position.x = data.originalPos.x + Math.cos(elapsedTime * data.speed * 0.5 + data.phase) * (data.amplitude * 0.5);
-            });
+        // Animate floating logos on all devices
+        this.floatingLogos.forEach(logo => {
+            const data = logo.userData;
+            // Slower and smaller animation on mobile
+            const speedMultiplier = this.isMobile ? 0.7 : 1;
+            const amplitudeMultiplier = this.isMobile ? 0.6 : 1;
+            logo.position.y = data.originalPos.y + Math.sin(elapsedTime * data.speed * speedMultiplier + data.phase) * data.amplitude * amplitudeMultiplier;
+            logo.position.x = data.originalPos.x + Math.cos(elapsedTime * data.speed * 0.5 * speedMultiplier + data.phase) * (data.amplitude * 0.5 * amplitudeMultiplier);
+        });
 
-            // Animate energy rings
+        // Animate energy rings (desktop only)
+        if (!this.isMobile) {
             this.energyRings.forEach((ring, index) => {
                 ring.rotation.z += ring.userData.speed;
                 ring.material.opacity = 0.15 + Math.sin(elapsedTime + index) * 0.1;

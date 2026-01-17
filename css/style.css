@@ -1887,13 +1887,21 @@ a.contact-value:hover {
 
 /* ========================================
    In-App Browser Fixes (Instagram, Facebook, etc.)
-   Add background to text to prevent blinking
+   Disable 3D canvas and complex animations to prevent blinking
    ======================================== */
+.in-app-browser #hero-canvas,
+.in-app-browser #skills-canvas {
+    display: none !important;
+}
+
+.in-app-browser .hero {
+    background: linear-gradient(135deg, #0a0a0f 0%, #12121a 50%, #1a1a25 100%) !important;
+}
+
 .in-app-browser .hero-content {
-    background: rgba(10, 10, 15, 0.85) !important;
+    background: rgba(10, 10, 15, 0.9) !important;
     padding: 40px !important;
     border-radius: 20px !important;
-    backdrop-filter: blur(10px) !important;
 }
 
 .in-app-browser .hero-title,
@@ -1909,6 +1917,11 @@ a.contact-value:hover {
     background: none !important;
 }
 
+.in-app-browser .floating-elements,
+.in-app-browser .hero-bg-elements {
+    display: none !important;
+}
+
 .in-app-browser .loader {
     display: none !important;
 }
@@ -1918,35 +1931,51 @@ a.contact-value:hover {
     display: none !important;
 }
 
+/* Disable gradient animation in in-app browsers */
+.in-app-browser .name-highlight {
+    animation: none !important;
+}
+
+.in-app-browser .badge-dot {
+    animation: none !important;
+}
+
+.in-app-browser .typing-cursor {
+    animation: none !important;
+    opacity: 1 !important;
+}
+
 /* ========================================
    Theme Toggle (Dark/Light Mode)
    ======================================== */
 .theme-toggle {
-    position: fixed;
-    top: 100px;
-    right: 20px;
-    z-index: 1000;
     background: var(--color-bg-secondary);
     border: 1px solid var(--color-border);
-    border-radius: 50px;
+    border-radius: 50%;
     padding: 8px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     transition: all 0.3s ease;
+    margin-right: 15px;
 }
 
 .theme-toggle:hover {
     transform: scale(1.1);
     border-color: var(--color-primary);
+    background: var(--color-primary);
+}
+
+.theme-toggle:hover svg {
+    color: white;
 }
 
 .theme-toggle svg {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     color: var(--color-text);
     transition: all 0.3s ease;
 }
@@ -1963,11 +1992,12 @@ a.contact-value:hover {
 body.light-theme {
     --color-bg: #f8fafc;
     --color-bg-secondary: #ffffff;
-    --color-bg-tertiary: #f1f5f9;
+    --color-bg-tertiary: #e2e8f0;
     --color-text: #1e293b;
     --color-text-secondary: #475569;
-    --color-text-muted: #94a3b8;
-    --color-border: rgba(0, 0, 0, 0.1);
+    --color-text-muted: #64748b;
+    --color-border: rgba(0, 0, 0, 0.12);
+    --gradient-card: linear-gradient(145deg, #ffffff, #f1f5f9);
 }
 
 body.light-theme .theme-toggle .sun-icon {
@@ -1978,51 +2008,129 @@ body.light-theme .theme-toggle .moon-icon {
     display: none;
 }
 
+/* Light Theme Hero Section - improved appearance */
+body.light-theme .hero {
+    background: linear-gradient(180deg, #f0f4ff 0%, #f8fafc 50%, #e0e7ff 100%);
+}
+
+body.light-theme .hero-content {
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 50%, transparent 80%);
+}
+
 body.light-theme .hero-title {
     color: #1e293b;
-    text-shadow: none;
+    text-shadow: 0 2px 10px rgba(99, 102, 241, 0.15);
+}
+
+body.light-theme .name-highlight {
+    background: linear-gradient(135deg, #4f46e5 0%, #0891b2 50%, #db2777 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: none;
 }
 
 body.light-theme .hero-subtitle {
-    color: #6366f1;
+    color: #4f46e5;
     text-shadow: none;
 }
 
 body.light-theme .hero-description {
-    color: #475569;
+    color: #334155;
     text-shadow: none;
 }
 
-body.light-theme .navbar {
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(20px);
+body.light-theme .hero-badge {
+    background: #ffffff;
+    border-color: rgba(99, 102, 241, 0.2);
+    color: #475569;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-body.light-theme .nav-link {
-    color: #1e293b;
+body.light-theme .stat-number {
+    background: linear-gradient(135deg, #4f46e5, #0891b2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.light-theme .stat-label {
+    color: #64748b;
 }
 
 body.light-theme #hero-canvas {
-    opacity: 0.3;
+    opacity: 0.25;
+}
+
+body.light-theme .navbar {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+}
+
+body.light-theme .navbar.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .nav-link {
+    color: #475569;
+}
+
+body.light-theme .nav-link:hover,
+body.light-theme .nav-link.active {
+    color: #4f46e5;
 }
 
 body.light-theme .section-title {
     color: #1e293b;
 }
 
+body.light-theme .section-tag {
+    background: rgba(99, 102, 241, 0.08);
+}
+
 body.light-theme .card,
 body.light-theme .project-card,
-body.light-theme .blog-card {
+body.light-theme .blog-card,
+body.light-theme .skill-category,
+body.light-theme .timeline-content {
     background: #ffffff;
-    border-color: rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+body.light-theme .btn-secondary {
+    background: #ffffff;
+    border-color: rgba(99, 102, 241, 0.3);
+    color: #4f46e5;
+}
+
+body.light-theme .btn-secondary:hover {
+    background: rgba(99, 102, 241, 0.1);
+    border-color: #4f46e5;
+}
+
+body.light-theme .scroll-indicator {
+    color: #64748b;
+}
+
+body.light-theme .mouse {
+    border-color: #94a3b8;
+}
+
+body.light-theme .floating-elements {
+    opacity: 0.3;
 }
 
 @media (max-width: 768px) {
     .theme-toggle {
-        top: auto;
-        bottom: 20px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
+        width: 36px;
+        height: 36px;
+        margin-right: 10px;
+    }
+
+    .theme-toggle svg {
+        width: 18px;
+        height: 18px;
     }
 }
