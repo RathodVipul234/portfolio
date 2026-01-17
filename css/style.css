@@ -1887,34 +1887,17 @@ a.contact-value:hover {
 
 /* ========================================
    In-App Browser Fixes (Instagram, Facebook, etc.)
-   Completely disable animations to prevent blinking
+   Only fix blinking - keep animations working
    ======================================== */
-.in-app-browser * {
-    animation: none !important;
-    transition: none !important;
-}
-
 .in-app-browser .hero-title,
 .in-app-browser .hero-subtitle,
-.in-app-browser .hero-description,
-.in-app-browser .title-line {
-    text-shadow: none !important;
-    filter: none !important;
-    transform: none !important;
-    opacity: 1 !important;
+.in-app-browser .hero-description {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8) !important;
 }
 
 .in-app-browser .name-highlight {
-    background: none !important;
-    -webkit-background-clip: unset !important;
     -webkit-text-fill-color: #a78bfa !important;
-    background-clip: unset !important;
     filter: none !important;
-    color: #a78bfa !important;
-}
-
-.in-app-browser .typing-cursor {
-    display: none !important;
 }
 
 .in-app-browser .loader {
@@ -1924,15 +1907,4 @@ a.contact-value:hover {
 .in-app-browser .cursor,
 .in-app-browser .cursor-follower {
     display: none !important;
-}
-
-/* Completely hide 3D canvas in in-app browsers */
-.in-app-browser #hero-canvas,
-.in-app-browser #skills-canvas {
-    display: none !important;
-}
-
-/* Add a simple gradient background instead */
-.in-app-browser .hero {
-    background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%) !important;
 }

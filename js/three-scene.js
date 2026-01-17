@@ -16,16 +16,12 @@ class ThreeScene {
         this.isInAppBrowser = /Instagram|FBAN|FBAV|Twitter|Line|WhatsApp|Snapchat/i.test(ua);
 
         // Performance settings based on device
-        // Completely disable for in-app browsers to prevent blinking
+        // Use low settings for in-app browsers for better compatibility
         if (this.isInAppBrowser) {
-            // Don't initialize anything for in-app browsers
-            if (this.canvas) {
-                this.canvas.style.display = 'none';
-            }
-            return;
+            this.performanceMode = 'low';
+        } else {
+            this.performanceMode = this.isMobile ? 'low' : (this.isTablet ? 'medium' : 'high');
         }
-
-        this.performanceMode = this.isMobile ? 'low' : (this.isTablet ? 'medium' : 'high');
 
         this.scene = null;
         this.camera = null;
