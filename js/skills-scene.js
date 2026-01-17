@@ -154,10 +154,10 @@ class SkillsScene {
     }
 
     createFloatingLogos() {
-        // Adjust settings for mobile - larger and more visible
-        const logoScale = this.isMobile ? 6 : 6;
-        const radius = this.isMobile ? 12 : 25;
-        const opacity = this.isMobile ? 0.85 : 0.4;
+        // Adjust settings - larger and more visible on all devices
+        const logoScale = this.isMobile ? 7 : 8;
+        const radius = this.isMobile ? 10 : 22;
+        const opacity = this.isMobile ? 0.95 : 0.75;
 
         this.techData.forEach((tech, index) => {
             const img = new Image();
@@ -169,9 +169,9 @@ class SkillsScene {
                 canvas.width = 256;
                 canvas.height = 256;
 
-                // Glow background
+                // Glow background - more visible on mobile
                 const gradient = ctx.createRadialGradient(128, 128, 0, 128, 128, 128);
-                gradient.addColorStop(0, 'rgba(255,255,255,0.2)');
+                gradient.addColorStop(0, this.isMobile ? 'rgba(255,255,255,0.4)' : 'rgba(255,255,255,0.2)');
                 gradient.addColorStop(1, 'transparent');
                 ctx.fillStyle = gradient;
                 ctx.beginPath();
@@ -190,19 +190,31 @@ class SkillsScene {
                 const sprite = new THREE.Sprite(material);
                 sprite.scale.set(logoScale, logoScale, 1);
 
-                // Position around the edges - closer on mobile
+                // Position logos - more scattered and centered on mobile
                 const angle = (index / this.techData.length) * Math.PI * 2;
-                const radiusVariation = radius + Math.random() * (this.isMobile ? 5 : 10);
-                sprite.position.set(
-                    Math.cos(angle) * radiusVariation,
-                    (Math.random() - 0.5) * (this.isMobile ? 10 : 15),
-                    Math.sin(angle) * radiusVariation * 0.3 - 10
-                );
+                const radiusVariation = radius + Math.random() * (this.isMobile ? 8 : 10);
+
+                if (this.isMobile) {
+                    // Spread logos more evenly across the viewport on mobile
+                    const row = Math.floor(index / 4);
+                    const col = index % 4;
+                    sprite.position.set(
+                        (col - 1.5) * 8 + (Math.random() - 0.5) * 4,
+                        (row - 0.5) * 10 + (Math.random() - 0.5) * 4,
+                        -5 + Math.random() * 3
+                    );
+                } else {
+                    sprite.position.set(
+                        Math.cos(angle) * radiusVariation,
+                        (Math.random() - 0.5) * 15,
+                        Math.sin(angle) * radiusVariation * 0.3 - 10
+                    );
+                }
 
                 sprite.userData = {
                     originalPos: sprite.position.clone(),
                     speed: 0.5 + Math.random() * 0.5,
-                    amplitude: this.isMobile ? 1.5 : 2 + Math.random() * 2,
+                    amplitude: this.isMobile ? 2 : 2 + Math.random() * 2,
                     phase: Math.random() * Math.PI * 2
                 };
 
