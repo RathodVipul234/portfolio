@@ -19,6 +19,16 @@
     <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
+    <!-- Detect in-app browsers and add class for simplified styles -->
+    <script>
+        (function() {
+            var ua = navigator.userAgent || '';
+            if (/Instagram|FBAN|FBAV|Twitter|Line|WhatsApp|Snapchat/i.test(ua)) {
+                document.body.classList.add('in-app-browser');
+            }
+        })();
+    </script>
+
     <!-- Custom Cursor -->
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
