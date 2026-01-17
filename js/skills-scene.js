@@ -154,10 +154,10 @@ class SkillsScene {
     }
 
     createFloatingLogos() {
-        // Adjust settings - larger and more visible on all devices
-        const logoScale = this.isMobile ? 7 : 8;
-        const radius = this.isMobile ? 10 : 22;
-        const opacity = this.isMobile ? 0.95 : 0.75;
+        // Adjust settings - smaller and subtle
+        const logoScale = this.isMobile ? 4 : 5;
+        const radius = this.isMobile ? 12 : 25;
+        const opacity = this.isMobile ? 0.6 : 0.5;
 
         this.techData.forEach((tech, index) => {
             const img = new Image();
@@ -169,13 +169,13 @@ class SkillsScene {
                 canvas.width = 256;
                 canvas.height = 256;
 
-                // Glow background - more visible on mobile
+                // Subtle glow background
                 const gradient = ctx.createRadialGradient(128, 128, 0, 128, 128, 128);
-                gradient.addColorStop(0, this.isMobile ? 'rgba(255,255,255,0.4)' : 'rgba(255,255,255,0.2)');
+                gradient.addColorStop(0, 'rgba(255,255,255,0.15)');
                 gradient.addColorStop(1, 'transparent');
                 ctx.fillStyle = gradient;
                 ctx.beginPath();
-                ctx.arc(128, 128, 120, 0, Math.PI * 2);
+                ctx.arc(128, 128, 100, 0, Math.PI * 2);
                 ctx.fill();
 
                 ctx.drawImage(img, 28, 28, 200, 200);

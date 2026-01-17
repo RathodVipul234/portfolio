@@ -18,3 +18,6 @@ nul
 
 # Node modules (if added later)
 node_modules/
+
+.gemini/
+gha-creds-*.json
